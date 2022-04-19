@@ -5,4 +5,5 @@
     cd front
     npm start
 
-
+## PLANTS info
+    https://blog.naver.com/o414_h/222705652677
