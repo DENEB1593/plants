@@ -8,13 +8,12 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.SQLDelete;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 @Getter
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
-@SQLDelete(sql = "UPDATE users SET deleted = true WHERE id=?")
+@SQLDelete(sql = "UPDATE users SET deleted = true WHERE user_no = ?")
 public class User extends AbstractEntity {
 
     @Id
@@ -27,25 +26,21 @@ public class User extends AbstractEntity {
     @Column(nullable = false)
     private String password;
 
-    private String email;
-
     @Column(nullable = false)
     private String phone;
 
-    @Enumerated(EnumType.STRING)
-    private PlantType plantType;
+    private String likePlants;
 
     @Builder
-    public User(String id, String password, String email, String phone) {
+    public User(String id, String password, String phone, String likePlants) {
         if(Strings.isNullOrEmpty(id)) throw new IllegalArgumentException("empty id");
         if(Strings.isNullOrEmpty(password)) throw new IllegalArgumentException("empty password");
-        if(Strings.isNullOrEmpty(email)) throw new IllegalArgumentException("empty email");
         if(Strings.isNullOrEmpty(phone)) throw new IllegalArgumentException("empty phone");
 
         this.id = id;
         this.password = password;
-        this.email = email;
         this.phone = phone;
+        this.likePlants = likePlants;
     }
 
     /**
@@ -53,8 +48,8 @@ public class User extends AbstractEntity {
      * @param userDto
      */
     public void update(UserDto userDto) {
-        this.email = userDto.getEmail();
         this.password = userDto.getPassword();
         this.phone = userDto.getPhone();
+        this.likePlants = userDto.getLikePlants();
     }
 }

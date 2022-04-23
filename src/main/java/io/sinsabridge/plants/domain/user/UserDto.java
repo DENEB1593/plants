@@ -11,16 +11,16 @@ public class UserDto {
 
     private String password;
 
-    private String email;
-
     private String phone;
+
+    private String likePlants;
 
     public User toEntity() {
         return User.builder()
                 .id(id)
                 .password(password)
-                .email(email)
                 .phone(phone)
+                .likePlants(likePlants)
                 .build();
     }
 }

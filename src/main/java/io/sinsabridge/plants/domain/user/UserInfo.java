@@ -9,14 +9,15 @@ public class UserInfo {
 
     private String id;
 
-    private String email;
-
     private String phone;
+
+    private String likePlants;
 
     public UserInfo(User user) {
         this.userNo = user.getUserNo();
         this.id = user.getId();
-        this.email = user.getEmail();
         this.phone = user.getPhone();
+        this.likePlants = user.getLikePlants();
+
     }
 }
