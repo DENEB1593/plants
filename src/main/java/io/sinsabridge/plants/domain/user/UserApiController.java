@@ -3,7 +3,7 @@ package io.sinsabridge.plants.domain.user;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("/user")
+@RequestMapping("/users")
 @RestController
 @RequiredArgsConstructor
 public class UserApiController {

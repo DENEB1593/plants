@@ -1,13 +1,19 @@
-package io.sinsabridge.plants.domain.product;
+package io.sinsabridge.plants.domain.plant;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * 식물유형
  */
 @AllArgsConstructor
 @Getter
+@JsonSerialize(using = PlantTypeSerializer.class)
 public enum PlantType {
 
     FOLIAGE( "관엽식물"),
