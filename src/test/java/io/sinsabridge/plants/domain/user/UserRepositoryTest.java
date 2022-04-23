@@ -33,7 +33,6 @@ public class UserRepositoryTest {
 
         someUser.update(updateUserInfo);
 
-
         Assertions.assertAll(
                 () -> Assertions.assertEquals("5678", someUser.getPassword()),
                 () -> Assertions.assertEquals("HERB", someUser.getLikePlants())
