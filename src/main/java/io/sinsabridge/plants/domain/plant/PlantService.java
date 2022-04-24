@@ -25,7 +25,7 @@ public class PlantService {
 
     }
 
-    public void deletePlant() {
+    public void deletePlant(Long plantNo) {
 
     }
 }

@@ -1,20 +1,23 @@
 package io.sinsabridge.plants.domain.plant;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 @RestController
 @RequestMapping("/plants")
+@RequiredArgsConstructor
 public class PlantApiController {
+
+    private final PlantService plantService;
+
     /**
      * 식물 조회
      */
     @GetMapping
     public List<Plant> getPlants() {
+        plantService.getPlants();
         return null;
     }
 
@@ -23,7 +26,7 @@ public class PlantApiController {
      */
     @PostMapping
     public void registPlant(@RequestBody PlantDto plantDto) {
-
+        plantService.registPlant(plantDto);
     }
 
     /**
@@ -31,7 +34,7 @@ public class PlantApiController {
      */
     @PutMapping
     public void updatePlant(@RequestBody PlantDto plantDto) {
-
+        plantService.updatePlant(plantDto);
     }
 
     /**
@@ -39,6 +42,7 @@ public class PlantApiController {
      */
     @DeleteMapping
     public void deletePlant(Long plantNo) {
+        plantService.deletePlant(plantNo);
     }
 
     /**
@@ -46,6 +50,7 @@ public class PlantApiController {
      */
     @GetMapping("/{plantType}")
     public List<Plant> getPlantsByType(@PathVariable("plantType") PlantType plantType) {
+        plantService.getPlantsByType(plantType);
         return null;
     }
     /**
