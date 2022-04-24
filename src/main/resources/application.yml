@@ -36,6 +36,10 @@ spring:
     activate:
       on-profile: local
 
+  datasource:
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    url: jdbc:log4jdbc:h2:mem:plant_db
+
   jpa:
     show-sql: true
     hibernate:
