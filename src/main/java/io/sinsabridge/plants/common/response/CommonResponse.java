@@ -28,6 +28,7 @@ public class CommonResponse<T> {
         return success(data, Strings.EMPTY);
     }
 
+    @SuppressWarnings("unchecked")
     public static <T> CommonResponse<T> success(T data, String message) {
         return (CommonResponse<T>) CommonResponse.builder()
                 .status(Status.SUCCESS)
@@ -44,6 +45,7 @@ public class CommonResponse<T> {
         return fail(data, Strings.EMPTY);
     }
 
+    @SuppressWarnings("unchecked")
     public static <T> CommonResponse<T> fail(T data, String message) {
         return (CommonResponse<T>) CommonResponse.builder()
                 .status(Status.FAIL)
