@@ -7,11 +7,9 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
-import java.net.http.HttpHeaders;
-
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -25,11 +23,9 @@ public class PlantApiControllerTest {
     @Test
     public void getPlantTypeCodes() throws Exception {
         mockMvc.perform(
-                    MockMvcRequestBuilders
-                            .get("/plants/types")
-                            .contentType(MediaType.APPLICATION_JSON)
+                    get("/plants/types").contentType(MediaType.APPLICATION_JSON)
                 )
-                .andDo(MockMvcResultHandlers.print())
+                .andDo(print())
                 .andExpect(status().isOk());
     }
 

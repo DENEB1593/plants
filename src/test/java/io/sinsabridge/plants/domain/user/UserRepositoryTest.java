@@ -12,6 +12,8 @@ public class UserRepositoryTest {
     @Autowired
     private UserRepository userRepository;
 
+    private static final String TEST_ID = "deneb1593";
+
     @DisplayName("회원_생성_테스트")
     @Rollback(false)
     @Test
@@ -21,14 +23,14 @@ public class UserRepositoryTest {
 
         userRepository.save(user);
 
-        Assertions.assertEquals(1, userRepository.findAll().size());
+        Assertions.assertNotNull(userRepository.findById(TEST_ID).orElse(null));
     }
 
     @DisplayName("회원_정보수정_테스트")
     @Test
     @Order(2)
     public void updateUser() {
-        User someUser = userRepository.findById("deneb1593").orElse(null);
+        User someUser = userRepository.findById(TEST_ID).orElse(null);
         UserDto updateUserInfo = givenUpdatedUserInfo();
 
         someUser.update(updateUserInfo);
@@ -39,13 +41,10 @@ public class UserRepositoryTest {
         );
     }
 
-
     @DisplayName("회원_탈퇴_테스트")
     @Test
     @Order(3)
     public void deleteUser() {
-        final String userId = "deneb1593";
-
         userRepository.deleteByUserNo(1L);
 
         User deletedUser = userRepository.findByUserNo(1L).orElse(null);
@@ -56,7 +55,7 @@ public class UserRepositoryTest {
 
     private static User givenUser() {
         UserDto userDto = new UserDto();
-        userDto.setId("deneb1593");
+        userDto.setId(TEST_ID);
         userDto.setPassword("1234");
         userDto.setPhone("01012341234");
         userDto.setLikePlants("FOLIAGE,TREE,SEED");
