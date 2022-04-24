@@ -1,5 +1,6 @@
 package io.sinsabridge.plants.domain.plant;
 
+import io.sinsabridge.plants.common.response.CommonResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -57,8 +58,9 @@ public class PlantApiController {
      * 식물 유형 코드 조회
      */
     @GetMapping("/types")
-    public List<PlantType> types() {
-        return PlantType.toList();
+    public CommonResponse types() {
+        List<PlantType> plantTypeList = PlantType.toList();
+        return CommonResponse.success(plantTypeList);
     }
 
 }
