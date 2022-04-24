@@ -53,7 +53,7 @@ public class PlantApiController {
      */
     @GetMapping("/types")
     public List<PlantType> types() {
-        return Collections.unmodifiableList(Arrays.asList(PlantType.values()));
+        return PlantType.toList();
     }
 
 }

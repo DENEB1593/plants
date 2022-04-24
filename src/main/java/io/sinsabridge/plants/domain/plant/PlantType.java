@@ -24,4 +24,10 @@ public enum PlantType {
     ETC("기타");
 
     private final String name;
+
+
+    public static List<PlantType> toList() {
+       return Stream.of(PlantType.values())
+               .collect(Collectors.toUnmodifiableList());
+    }
 }
