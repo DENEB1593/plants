@@ -5,8 +5,6 @@ insert into users (`id`, `password`, `phone`, `like_plants`, `deleted`) values (
 insert into users (`id`, `password`, `phone`, `like_plants`, `deleted`) values ('userD' , '1237', '01012341237', 'FOLIAGE,TREE', false);
 
 -- plants
-insert into plants (`code`, `name`, `plant_type`, `deleted`) values ('airplant', '
-공기/정화식물', 'FOLIAGE', false);
-insert into plants (`code`, `name`, `plant_type`, `deleted`) values ('succlentplant', '
-다육식물', 'FOLIAGE', false);
+insert into plants (`code`, `name`, `plant_type`, `deleted`) values ('airplant', ' 공기/정화식물', 'FOLIAGE', false);
+insert into plants (`code`, `name`, `plant_type`, `deleted`) values ('succlentplant', ' 다육식물', 'FOLIAGE', false);
 insert into plants (`code`, `name`, `plant_type`, `deleted`) values ('fruit', '열매식물', 'TREE', false);

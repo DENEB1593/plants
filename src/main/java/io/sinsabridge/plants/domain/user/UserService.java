@@ -1,6 +1,8 @@
 package io.sinsabridge.plants.domain.user;
 
+import io.sinsabridge.plants.infra.SendManger;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -8,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class UserService {
 
+    @Qualifier("smsSendManger")
+    private final SendManger smsSendManger;
     private final UserRepository userRepository;
 
     public UserInfo createUser(UserDto userDto) {
@@ -20,6 +24,19 @@ public class UserService {
         User createdUser = userRepository.save(userDto.toEntity());
 
         return new UserInfo(createdUser);
+    }
+
+    /**
+     * 인증번호 발송
+     */
+    public void sendVerificationCode() {
+        smsSendManger.send("Some Template");
+    }
+
+    /**
+     * 인증번호 검증
+     */
+    public void validVerificationCode() {
     }
 
     @Transactional(readOnly = true)
