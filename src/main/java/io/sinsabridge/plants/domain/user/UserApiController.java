@@ -1,5 +1,6 @@
 package io.sinsabridge.plants.domain.user;
 
+import com.google.common.base.Verify;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +17,14 @@ public class UserApiController {
     @PostMapping
     public void createUser(@RequestBody UserDto userDto) {
         userService.createUser(userDto);
+    }
+
+    /**
+     * 문자 인증번호 발송요청
+     */
+    @PostMapping("/verify")
+    public void verify(@RequestBody VerifyDto verifyDto) {
+        userService.sendVerifyCode(verifyDto);
     }
 
     /**

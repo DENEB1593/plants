@@ -1,4 +1,4 @@
-package io.sinsabridge.plants.infra.notification;
+package io.sinsabridge.plants.infra.notification.sms;
 
 import lombok.Getter;
 import lombok.Setter;

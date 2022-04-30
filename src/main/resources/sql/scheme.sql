@@ -18,5 +18,6 @@ create table users (
            like_plants varchar(255),
            password varchar(255) not null,
            phone varchar(255) not null,
+           verified boolean default false,
            primary key (user_no)
 );

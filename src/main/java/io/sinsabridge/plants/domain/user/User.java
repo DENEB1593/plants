@@ -29,6 +29,9 @@ public class User extends AbstractEntity {
     @Column(nullable = false)
     private String phone;
 
+    @Column(columnDefinition = "default false", nullable = false)
+    private boolean verified;
+
     private String likePlants;
 
     @Builder

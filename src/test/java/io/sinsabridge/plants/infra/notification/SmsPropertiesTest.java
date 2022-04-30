@@ -1,5 +1,6 @@
 package io.sinsabridge.plants.infra.notification;
 
+import io.sinsabridge.plants.infra.notification.sms.SmsProperties;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

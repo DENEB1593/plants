@@ -1,5 +1,6 @@
 ## 개발환경
-    jdk 11 
+    jdk 11
+    junit 5
     spring-boot 2.5.6 
     react
 

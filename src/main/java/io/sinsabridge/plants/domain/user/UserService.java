@@ -2,10 +2,13 @@ package io.sinsabridge.plants.domain.user;
 
 import io.sinsabridge.plants.infra.notification.SendManger;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -28,15 +31,18 @@ public class UserService {
 
     /**
      * 인증번호 발송
+     * @param verifyDto
      */
-    public void sendVerificationCode() {
-        smsSendManger.send("Some Template");
+    public void sendVerifyCode(VerifyDto verifyDto) {
+        ResponseEntity<String> result = smsSendManger.send(verifyDto);
+        log.info("{}", result);
     }
 
     /**
      * 인증번호 검증
      */
-    public void validVerificationCode() {
+    public void validVerifyCode(VerifyDto verifyDto) {
+
     }
 
     @Transactional(readOnly = true)
