@@ -1,6 +1,6 @@
 package io.sinsabridge.plants.domain.user;
 
-import io.sinsabridge.plants.infra.SendManger;
+import io.sinsabridge.plants.infra.notification.SendManger;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;

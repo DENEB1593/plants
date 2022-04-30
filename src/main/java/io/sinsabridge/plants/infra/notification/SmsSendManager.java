@@ -1,6 +1,5 @@
-package io.sinsabridge.plants.infra;
+package io.sinsabridge.plants.infra.notification;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component(value = "smsSendManager")

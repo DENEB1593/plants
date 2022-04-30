@@ -1,18 +1,16 @@
-package io.sinsabridge.plants.infra;
+package io.sinsabridge.plants.infra.notification;
 
-import org.springframework.stereotype.Component;
 
 import java.util.Random;
 import java.util.stream.Collectors;
 
-@Component
 public class VerificationCodeGenerator {
 
-    private final int CODE_SIZE = 5;
+    private final static int CODE_SIZE = 5;
 
     public static String generate() {
         return new Random().ints(0, 10)
-                .limit(5)
+                .limit(CODE_SIZE)
                 .boxed()
                 .map(String::valueOf)
                 .collect(Collectors.joining());
