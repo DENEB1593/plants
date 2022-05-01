@@ -40,9 +40,10 @@ public class UserService {
 
     /**
      * 인증번호 검증
+     * @param verifyDto
      */
     public void validVerifyCode(VerifyDto verifyDto) {
-
+        userRepository.findByPhone(verifyDto.getPhone());
     }
 
     @Transactional(readOnly = true)
@@ -58,6 +59,7 @@ public class UserService {
                 .orElseThrow(() -> new RuntimeException(String.format("User not found : %s", userDto.getId())));
 
         user.update(userDto);
+        userRepository.save(user);
 
         return new UserInfo(user);
     }

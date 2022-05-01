@@ -26,6 +26,9 @@
     <logger name="jdbc.resultsettable" level="INFO" additivity="false">
         <appender-ref ref="CONSOLE"/>
     </logger>
+    <logger name="jdbc.resultset" level="OFF" additivity="falase">
+        <appender-ref ref="CONSOLE"/>
+    </logger>
     <logger name="jdbc.audit" level="OFF" additivity="false">
         <appender-ref ref="CONSOLE"/>
     </logger>

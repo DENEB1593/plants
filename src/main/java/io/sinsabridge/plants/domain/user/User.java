@@ -52,7 +52,6 @@ public class User extends AbstractEntity {
      */
     public void update(UserDto userDto) {
         this.password = userDto.getPassword();
-        this.phone = userDto.getPhone();
         this.likePlants = userDto.getLikePlants();
     }
 }
