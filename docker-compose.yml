@@ -6,11 +6,11 @@ services:
     restart: always
     environment:
       - TZ=Asia/Seoul
-      - POSTGRES_USER=massage
-      - POSTGRES_PASSWORD=massage
-      - POSTGRES_DB=massage
+      - POSTGRES_USER=plants
+      - POSTGRES_PASSWORD=plants
+      - POSTGRES_DB=plants
     ports:
-      - '5232:5432'
+      - '5432:5432'
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
       # - ./sql/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
