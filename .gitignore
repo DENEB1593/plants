@@ -40,3 +40,5 @@ out/
 ## front
 /front/node_modules
 /front/build
+
+/postgres-data
