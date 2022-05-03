@@ -1,5 +1,6 @@
 package io.sinsabridge.plants.domain.user;
 
+import io.sinsabridge.plants.domain.user.exception.UserAlreadyExistException;
 import io.sinsabridge.plants.infra.notification.SendManger;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,8 +20,8 @@ public class UserService {
 
     public UserInfo createUser(UserDto userDto) {
         // id 중복 검사
-        userRepository.findById(userDto.getId()).ifPresent((existedUser) ->{
-            throw new RuntimeException(String.format("아이디 %s가 이미 존재합니다.", existedUser.getId()));
+        userRepository.findById(userDto.getId()).ifPresent(user -> {
+            throw new UserAlreadyExistException();
         });
 
         // 회원 저장
