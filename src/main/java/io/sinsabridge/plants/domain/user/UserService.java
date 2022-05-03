@@ -1,6 +1,7 @@
 package io.sinsabridge.plants.domain.user;
 
 import io.sinsabridge.plants.domain.user.exception.UserAlreadyExistException;
+import io.sinsabridge.plants.domain.user.exception.UserNotFoundException;
 import io.sinsabridge.plants.infra.notification.SendManger;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -49,15 +50,14 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public UserInfo getUserByUserNo(Long userNo) {
-        User user = userRepository.findByUserNo(userNo)
-                .orElseThrow(() -> new RuntimeException(String.format("User not found : %s", userNo)));
+        User user = userRepository.findByUserNo(userNo).orElseThrow(UserNotFoundException::new);
 
         return new UserInfo(user);
     }
 
+
     public UserInfo updateUser(UserDto userDto) {
-        User user = userRepository.findById(userDto.getId())
-                .orElseThrow(() -> new RuntimeException(String.format("User not found : %s", userDto.getId())));
+        User user = userRepository.findById(userDto.getId()).orElseThrow(UserNotFoundException::new);
 
         user.update(userDto);
         userRepository.save(user);
