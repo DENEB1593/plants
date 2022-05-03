@@ -23,10 +23,12 @@ public class UserApiController {
 
     /**
      * 문자 인증번호 발송
+     * @return
      */
     @PostMapping("/verify")
-    public void verify(@RequestBody VerifyDto verifyDto) {
+    public CommonResponse<?> verify(@RequestBody VerifyDto verifyDto) {
         userService.sendVerifyCode(verifyDto);
+        return CommonResponse.success(null, "인증번호가 발송되었습니다");
     }
 
     @PostMapping("/verify-code")
