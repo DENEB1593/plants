@@ -14,6 +14,19 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ControllerAdvice
 public class CommonControllerAdvice {
 
+    /**
+     * 시스템 에러
+     */
+    @ResponseBody
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(value = Exception.class)
+    public CommonResponse systemException(Exception e) {
+        return CommonResponse.fail(null, e.getMessage());
+    }
+
+    /**
+     * 비즈니스 에러
+     */
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     @ExceptionHandler(value = {UserAlreadyExistException.class, UserNotFoundException.class})
