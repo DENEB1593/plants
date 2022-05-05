@@ -6,15 +6,19 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.SQLDelete;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.Collections;
 
 @Getter
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
 @SQLDelete(sql = "UPDATE users SET deleted = true WHERE user_no = ?")
-public class User extends AbstractEntity {
+public class User extends AbstractEntity implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,5 +57,36 @@ public class User extends AbstractEntity {
     public void update(UserDto userDto) {
         this.password = userDto.getPassword();
         this.likePlants = userDto.getLikePlants();
+    }
+
+    // security override
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Collections.emptyList();
+    }
+
+    @Override
+    public String getUsername() {
+        return id;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }

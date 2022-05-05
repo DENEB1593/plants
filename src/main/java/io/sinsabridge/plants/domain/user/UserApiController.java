@@ -4,7 +4,7 @@ import io.sinsabridge.plants.common.response.CommonResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("/users")
+@RequestMapping("/api/users")
 @RestController
 @RequiredArgsConstructor
 public class UserApiController {

@@ -7,6 +7,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,6 +20,7 @@ public class UserService {
 
     @Qualifier("smsSendManger")
     private final SendManger smsSendManger;
+
     private final UserRepository userRepository;
 
     public UserInfo createUser(UserDto userDto) {
@@ -68,4 +72,5 @@ public class UserService {
     public int deleteUser(Long userNo) {
         return userRepository.deleteByUserNo(userNo);
     }
+
 }

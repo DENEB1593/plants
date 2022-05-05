@@ -3,8 +3,9 @@ package io.sinsabridge.plants.domain.user;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.validation.constraints.NotBlank;
-
+/**
+ * DTO 정의 =
+ */
 @Getter
 @Setter
 public class UserDto {
@@ -17,7 +18,7 @@ public class UserDto {
 
     private String likePlants;
 
-    public User toEntity() {
+    public User toEntity() {;
         return User.builder()
                 .id(id)
                 .password(password)
@@ -25,4 +26,5 @@ public class UserDto {
                 .likePlants(likePlants)
                 .build();
     }
+
 }

@@ -1,6 +1,6 @@
 server:
   servlet:
-    context-path: /api
+    context-path: /
   tomcat:
     uri-encoding: UTF-8
   port: 8080
