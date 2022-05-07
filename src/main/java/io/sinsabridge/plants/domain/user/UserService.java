@@ -1,5 +1,6 @@
 package io.sinsabridge.plants.domain.user;
 
+import com.google.common.collect.Lists;
 import io.sinsabridge.plants.domain.user.exception.UserAlreadyExistException;
 import io.sinsabridge.plants.domain.user.exception.UserNotFoundException;
 import io.sinsabridge.plants.infra.notification.SendManger;
@@ -7,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -16,13 +18,18 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class UserService {
+public class UserService implements UserDetailsService {
 
     @Qualifier("smsSendManger")
     private final SendManger smsSendManger;
 
     private final UserRepository userRepository;
 
+    /**
+     * 회원 등록
+     * @param userDto
+     * @return
+     */
     public UserInfo createUser(UserDto userDto) {
         // id 중복 검사
         userRepository.findById(userDto.getId()).ifPresent(user -> {
@@ -59,11 +66,14 @@ public class UserService {
         return new UserInfo(user);
     }
 
+    /**
+     * 회원 정보 수정
+     * @param userDto
+     */
+    public UserInfo updateUser(UserDto.UpdateUser updateUserDto) {
+        User user = userRepository.findById(updateUserDto.getId()).orElseThrow(UserNotFoundException::new);
 
-    public UserInfo updateUser(UserDto userDto) {
-        User user = userRepository.findById(userDto.getId()).orElseThrow(UserNotFoundException::new);
-
-        user.update(userDto);
+        user.update(updateUserDto);
         userRepository.save(user);
 
         return new UserInfo(user);
@@ -73,4 +83,15 @@ public class UserService {
         return userRepository.deleteByUserNo(userNo);
     }
 
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findById(username).orElseThrow(UserNotFoundException::new);
+
+        return org.springframework.security.core.userdetails
+                        .User.builder()
+                        .username(user.getId())
+                        .password(user.getPassword())
+                        .authorities(Lists.newArrayList(new SimpleGrantedAuthority("USER")))
+                        .build();
+    }
 }

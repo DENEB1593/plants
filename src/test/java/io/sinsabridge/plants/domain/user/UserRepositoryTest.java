@@ -31,7 +31,7 @@ public class UserRepositoryTest {
     @Order(2)
     public void updateUser() {
         User someUser = userRepository.findById(TEST_ID).orElse(null);
-        UserDto updateUserInfo = givenUpdatedUserInfo();
+        UserDto.UpdateUser updateUserInfo = givenUpdatedUserInfo();
 
         someUser.update(updateUserInfo);
 
@@ -64,12 +64,8 @@ public class UserRepositoryTest {
 
     }
 
-    private static UserDto givenUpdatedUserInfo() {
-        UserDto userDto = new UserDto();
-        userDto.setPassword("5678");
-        userDto.setLikePlants("HERB");
-
-        return userDto;
+    private static UserDto.UpdateUser givenUpdatedUserInfo() {
+        return new UserDto.UpdateUser(TEST_ID, "01012341234", "5678", "HERB");
     }
 
 

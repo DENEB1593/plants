@@ -12,6 +12,14 @@ public class UserApiController {
     private final UserService userService;
 
     /**
+     * 회원 로그인
+     */
+    @PostMapping("/login")
+    public CommonResponse<?> loginUser(@RequestBody UserDto.LoginUser loginUserDto) {
+        return CommonResponse.success(null, "로그인 성공");
+    }
+
+    /**
      * 회원 등록
      * @return
      */
@@ -49,8 +57,8 @@ public class UserApiController {
      * 회원 정보 수정
      */
     @PutMapping
-    public CommonResponse<UserInfo> updateUser(@RequestBody UserDto userDto) {
-        UserInfo userInfo = userService.updateUser(userDto);
+    public CommonResponse<UserInfo> updateUser(@RequestBody UserDto.UpdateUser updateUserDto) {
+        UserInfo userInfo = userService.updateUser(updateUserDto);
         return CommonResponse.success(userInfo, "회원정보 수정 성공");
     }
 

@@ -54,9 +54,10 @@ public class User extends AbstractEntity implements UserDetails {
      * 회원정보를 수정한다.
      * @param userDto
      */
-    public void update(UserDto userDto) {
-        this.password = userDto.getPassword();
-        this.likePlants = userDto.getLikePlants();
+    public void update(UserDto.UpdateUser updateUserDto) {
+        this.phone = updateUserDto.getPhone();
+        this.password = updateUserDto.getPassword();
+        this.likePlants = updateUserDto.getLikePlants();
     }
 
     // security override
