@@ -4,12 +4,15 @@ import io.sinsabridge.plants.infra.notification.sms.SmsProperties;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Import;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@SpringBootTest
+@ExtendWith(SpringExtension.class)
+@Import(SmsProperties.class)
 public class SmsPropertiesTest {
 
     private static final String HOST = "https://apis.aligo.in/send/";

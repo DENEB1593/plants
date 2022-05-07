@@ -23,7 +23,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
 
-        http.formLogin();
+        http.formLogin()
+                    .loginPage("/login.html")
+                    .defaultSuccessUrl("/")
+                .and()
+                    .logout()
+                    .logoutSuccessUrl("/index.html");
+
     }
 
     @Override

@@ -3,7 +3,7 @@ package io.sinsabridge.plants;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@RestController("/api")
 public class ReactTestController {
 
     @GetMapping("/hello")
