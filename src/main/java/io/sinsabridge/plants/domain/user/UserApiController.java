@@ -4,6 +4,8 @@ import io.sinsabridge.plants.common.response.CommonResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RequestMapping("/api/users")
 @RestController
 @RequiredArgsConstructor
@@ -15,7 +17,7 @@ public class UserApiController {
      * 회원 로그인
      */
     @PostMapping("/login")
-    public CommonResponse<?> loginUser(@RequestBody UserDto.LoginUser loginUserDto) {
+    public CommonResponse<?> loginUser(@RequestBody @Valid UserDto.LoginUser loginUserDto) {
         return CommonResponse.success(null, "로그인 성공");
     }
 
@@ -24,7 +26,7 @@ public class UserApiController {
      * @return
      */
     @PostMapping
-    public CommonResponse<?> createUser(@RequestBody UserDto.CreateUser createUserDto) {
+    public CommonResponse<?> createUser(@RequestBody @Valid UserDto.CreateUser createUserDto) {
         userService.createUser(createUserDto);
         return CommonResponse.success(null, "회원등록 성공");
     }

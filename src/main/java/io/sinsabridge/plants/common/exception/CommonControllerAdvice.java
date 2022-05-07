@@ -5,6 +5,9 @@ import io.sinsabridge.plants.domain.user.exception.UserAlreadyExistException;
 import io.sinsabridge.plants.domain.user.exception.UserNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -33,4 +36,21 @@ public class CommonControllerAdvice {
     public CommonResponse businessException(Exception e) {
         return CommonResponse.fail(null, e.getMessage());
     }
+
+    /**
+     * 유효성 에러
+     */
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    @ExceptionHandler(value = {MethodArgumentNotValidException.class})
+    public CommonResponse validationException(MethodArgumentNotValidException exception) {
+        BindingResult bindingResult = exception.getBindingResult();
+        StringBuilder errorMsgBuffer = new StringBuilder();
+        for (FieldError fieldError : bindingResult.getFieldErrors()) {
+            errorMsgBuffer.append(fieldError.getDefaultMessage());
+            break;
+        }
+        return CommonResponse.fail(null, errorMsgBuffer.toString());
+    }
+
 }

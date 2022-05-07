@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.NotBlank;
+
 /**
  * UserDto
  * CreateUser: 회원추가
@@ -17,7 +19,11 @@ public class UserDto {
     @AllArgsConstructor
     @NoArgsConstructor
     public static class LoginUser {
+
+        @NotBlank(message = "아이디는 필수입니다")
         private String id;
+
+        @NotBlank(message = "비밀번호는 필수입니다")
         private String password;
     }
 
@@ -25,9 +31,16 @@ public class UserDto {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class CreateUser {
+
+        @NotBlank(message = "아이디는 필수입니다")
         private String id;
+
+        @NotBlank(message = "비밀번호는 필수입니다")
         private String password;
+
+        @NotBlank(message = "휴대번호는 필수입니다")
         private String phone;
+
         private String likePlants;
 
         public User toEntity() {

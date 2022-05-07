@@ -68,7 +68,7 @@ public class UserService implements UserDetailsService {
 
     /**
      * 회원 정보 수정
-     * @param userDto
+     * @param updateUserDto
      */
     public UserInfo updateUser(UserDto.UpdateUser updateUserDto) {
         User user = userRepository.findById(updateUserDto.getId()).orElseThrow(UserNotFoundException::new);

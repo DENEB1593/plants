@@ -52,7 +52,7 @@ public class User extends AbstractEntity implements UserDetails {
 
     /**
      * 회원정보를 수정한다.
-     * @param userDto
+     * @param updateUserDto
      */
     public void update(UserDto.UpdateUser updateUserDto) {
         this.phone = updateUserDto.getPhone();
