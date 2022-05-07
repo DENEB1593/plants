@@ -24,8 +24,8 @@ public class UserApiController {
      * @return
      */
     @PostMapping
-    public CommonResponse<?> createUser(@RequestBody UserDto userDto) {
-        userService.createUser(userDto);
+    public CommonResponse<?> createUser(@RequestBody UserDto.CreateUser createUserDto) {
+        userService.createUser(createUserDto);
         return CommonResponse.success(null, "회원등록 성공");
     }
 

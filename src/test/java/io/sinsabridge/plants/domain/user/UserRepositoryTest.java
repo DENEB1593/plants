@@ -54,13 +54,8 @@ public class UserRepositoryTest {
     }
 
     private static User givenUser() {
-        UserDto userDto = new UserDto();
-        userDto.setId(TEST_ID);
-        userDto.setPassword("1234");
-        userDto.setPhone("01012341234");
-        userDto.setLikePlants("FOLIAGE,TREE,SEED");
-
-        return userDto.toEntity();
+        UserDto.CreateUser createUser = new UserDto.CreateUser(TEST_ID, "1234", "01012341234", "FOLIAGE,TREE,SEED");
+        return createUser.toEntity();
 
     }
 

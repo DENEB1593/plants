@@ -11,8 +11,6 @@ import lombok.Setter;
  * UpdateUser: 회원정보 수정
  * LoginUser: 로그인 시
  */
-@Getter
-@Setter
 public class UserDto {
 
     @Getter

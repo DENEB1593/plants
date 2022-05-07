@@ -27,17 +27,17 @@ public class UserService implements UserDetailsService {
 
     /**
      * 회원 등록
-     * @param userDto
+     * @param createUserDto
      * @return
      */
-    public UserInfo createUser(UserDto userDto) {
+    public UserInfo createUser(UserDto.CreateUser createUserDto) {
         // id 중복 검사
-        userRepository.findById(userDto.getId()).ifPresent(user -> {
+        userRepository.findById(createUserDto.getId()).ifPresent(user -> {
             throw new UserAlreadyExistException();
         });
 
         // 회원 저장
-        User createdUser = userRepository.save(userDto.toEntity());
+        User createdUser = userRepository.save(createUserDto.toEntity());
 
         return new UserInfo(createdUser);
     }
