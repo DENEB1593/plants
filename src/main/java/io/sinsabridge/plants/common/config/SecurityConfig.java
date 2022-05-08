@@ -24,7 +24,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
 
         http.formLogin()
-                    .loginPage("/login.html")
+                    .loginPage("/login")
+                    .usernameParameter("id")
+                    .passwordParameter("password")
                     .defaultSuccessUrl("/")
                 .and()
                     .logout()
